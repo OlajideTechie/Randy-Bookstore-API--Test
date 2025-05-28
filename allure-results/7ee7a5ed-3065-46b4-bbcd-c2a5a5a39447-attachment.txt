@@ -1,0 +1,15 @@
+pm.test("Response contains books", function () {
+    pm.response.to.have.status(200);
+    pm.response.to.have.jsonBody();
+
+    const books = pm.response.json();
+    pm.expect(books.length).to.be.above(1);
+});
+
+
+pm.test("Authorization is present", function () {
+
+    pm.expect(pm.request.headers.has("Authorization")).to.be.true;
+
+    pm.expect(pm.response.status).to.not.eql(401, "Authorization failed: Unauthorized access");
+});

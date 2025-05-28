@@ -1,0 +1,15 @@
+pm.test("Successfully adds a new book", function () {
+    pm.response.to.have.status(201);
+    pm.response.to.have.jsonBody();
+    const responseBody = pm.response.json();
+    pm.expect(responseBody).to.have.property("id");
+    pm.expect(responseBody.title).to.eql("New Book Title");
+});
+
+pm.test("Authorization is present", function () {
+
+    pm.expect(pm.request.headers.has("Authorization")).to.be.true;
+
+    pm.expect(pm.response.status).to.not.eql(401, "Authorization failed: Unauthorized access");
+});
+

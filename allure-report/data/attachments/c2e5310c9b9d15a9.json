@@ -1,0 +1,14 @@
+{
+    "Date": "Wed, 28 May 2025 22:12:16 GMT",
+    "Content-Type": "application/json; charset=utf-8",
+    "Content-Length": "44",
+    "Connection": "keep-alive",
+    "x-srv-trace": "v=1;t=c10da71159850648",
+    "x-srv-span": "v=1;s=aa3e80ffc8355bc0",
+    "Access-Control-Allow-Origin": "*",
+    "X-RateLimit-Limit": "120",
+    "X-RateLimit-Remaining": "118",
+    "X-RateLimit-Reset": "1748470395",
+    "ETag": "W/\"2c-X27JQ7DAgY8F2SKV8ahfxvnKni0\"",
+    "Vary": "Accept-Encoding"
+}

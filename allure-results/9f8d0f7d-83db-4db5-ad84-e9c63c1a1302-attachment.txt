@@ -1,0 +1,5 @@
+{
+    "title": "New Book Title",
+    "author": "Author Name",
+    "isbn": "NewISBN1234"
+}

@@ -1,0 +1,12 @@
+{
+    "Authorization": "Bearer {{token}}",
+    "Content-Type": "application/json",
+    "User-Agent": "PostmanRuntime/7.39.1",
+    "Accept": "*/*",
+    "Cache-Control": "no-cache",
+    "Postman-Token": "dca30621-f461-4849-b8df-156b6947e964",
+    "Host": "2acfada4-7873-4419-904f-e9a6dee11eee.mock.pstmn.io",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Connection": "keep-alive",
+    "Content-Length": "89"
+}

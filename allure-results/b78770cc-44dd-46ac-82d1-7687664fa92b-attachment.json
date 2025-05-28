@@ -1,0 +1,11 @@
+{
+    "Date": "Wed, 28 May 2025 22:12:18 GMT",
+    "Connection": "keep-alive",
+    "x-srv-trace": "v=1;t=20325f79a28ebd92",
+    "x-srv-span": "v=1;s=f26ff3d99b051e5b",
+    "Access-Control-Allow-Origin": "*",
+    "X-RateLimit-Limit": "120",
+    "X-RateLimit-Remaining": "113",
+    "X-RateLimit-Reset": "1748470395",
+    "ETag": "W/\"0-2jmj7l5rSw0yVb/vlWAYkK/YBwk\""
+}
