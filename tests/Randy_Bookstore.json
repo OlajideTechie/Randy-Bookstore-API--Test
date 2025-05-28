@@ -1,0 +1,712 @@
+{
+	"info": {
+		"_postman_id": "9a52b45a-3be0-476a-835c-85dd76ad1c91",
+		"name": "Randy's Bookstore API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "add a new book",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f7867d53-a86a-4229-99e2-f56e0ba2cdc4",
+						"exec": [
+							"pm.test(\"Successfully adds a new book\", function () {",
+							"    pm.response.to.have.status(201);",
+							"    pm.response.to.have.jsonBody();",
+							"    const responseBody = pm.response.json();",
+							"    pm.expect(responseBody).to.have.property(\"id\");",
+							"    pm.expect(responseBody.title).to.eql(\"New Book Title\");",
+							"});",
+							"",
+							"pm.test(\"Authorization is present\", function () {",
+							"",
+							"    pm.expect(pm.request.headers.has(\"Authorization\")).to.be.true;",
+							"",
+							"    pm.expect(pm.response.status).to.not.eql(401, \"Authorization failed: Unauthorized access\");",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "976a838b-7a55-4158-b8c8-689c7728ffb3",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {}
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"New Book Title\",\n    \"author\": \"Author Name\",\n    \"isbn\": \"NewISBN1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{url}}/api/v1/books"
+			},
+			"response": [
+				{
+					"id": "9a26562a-c617-4753-bd57-22bc0a297cd3",
+					"name": "Default",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"New Book Title\",\n    \"author\": \"Author Name\",\n    \"isbn\": \"NewISBN1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "https://2acfada4-7873-4419-904f-e9a6dee11eee.mock.pstmn.io/api/v1/books"
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text",
+							"uuid": "16707240-1beb-46a8-ab33-261a04d358ca"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"id\": 3,\n    \"title\": \"New Book Title\",\n    \"author\": \"Author Name\",\n    \"isbn\": \"NewISBN1234\"\n}"
+				}
+			]
+		},
+		{
+			"name": "add a new book with a duplicate title",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1961d1bc-a7eb-4fff-8618-780f5cfbf9a3",
+						"exec": [
+							"pm.test(\"Error for duplicate title\", function () {",
+							"    const responseBody = pm.response.json();",
+							"    ",
+							"    if (responseBody.error) {",
+							"        pm.expect(responseBody.error).to.eql(\"Book title must be unique\");",
+							"    }",
+							"});",
+							"",
+							"",
+							"pm.test(\"Authorization is present\", function () {",
+							"",
+							"    pm.expect(pm.request.headers.has(\"Authorization\")).to.be.true;",
+							"",
+							"    pm.expect(pm.response.status).to.not.eql(401, \"Authorization failed: Unauthorized access\");",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "c0f85254-a4e7-4327-bd46-1a73ca65f1e4",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"id\": 3,\n\"title\": \"New Book Title\",\n\"author\": \"Author Name\",\n\"isbn\": \"NewISBN1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{url}}/api/v1/books"
+			},
+			"response": [
+				{
+					"id": "00e826c9-3fea-4c32-9746-f576a912f937",
+					"name": "Default",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 3,\n    \"title\": \"New Book Title\",\n    \"author\": \"Author Name\",\n    \"isbn\": \"NewISBN1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/api/v1/books"
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"error\": \"Book title must be unique\"\n}"
+				}
+			]
+		},
+		{
+			"name": "retrieve all books",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2ef9dc53-90ff-448e-9fb7-c1b6c3ad33b1",
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "56f968a7-dfd1-4836-a379-a3d25eb39903",
+						"exec": [
+							"pm.test(\"Response contains books\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.have.jsonBody();",
+							"",
+							"    const books = pm.response.json();",
+							"    pm.expect(books.length).to.be.above(1);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Authorization is present\", function () {",
+							"",
+							"    pm.expect(pm.request.headers.has(\"Authorization\")).to.be.true;",
+							"",
+							"    pm.expect(pm.response.status).to.not.eql(401, \"Authorization failed: Unauthorized access\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "0302a13d-f448-4ee9-ad03-6af784977978",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "{{url}}/api/v1/books"
+			},
+			"response": [
+				{
+					"id": "174619e6-b488-4542-bdac-0f99f1e99d14",
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "https://2acfada4-7873-4419-904f-e9a6dee11eee.mock.pstmn.io/api/v1/books"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "[\n    {\n        \"id\": 1,\n        \"title\": \"The Great Gatsby\",\n        \"author\": \"F. Scott Fitzgerald\",\n        \"isbn\": \"9780743273565\"\n    },\n    {\n        \"id\": 2,\n        \"title\": \"To Kill a Mockingbird\",\n        \"author\": \"Harper Lee\",\n        \"isbn\": \"9780061120084\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "update book by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "704581c6-4ec5-43ee-8722-2f341496dccc",
+						"exec": [
+							"pm.test(\"Successfully updates the book\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    const responseBody = pm.response.json();",
+							"    pm.expect(responseBody.title).to.eql(\"Updated Book Title\");",
+							"});",
+							"",
+							"",
+							"",
+							"pm.test(\"Authorization is present\", function () {",
+							"",
+							"    pm.expect(pm.request.headers.has(\"Authorization\")).to.be.true;",
+							"",
+							"    pm.expect(pm.response.status).to.not.eql(401, \"Authorization failed: Unauthorized access\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "0410db5d-49e6-446f-bcdf-bcb335feefdc",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Updated Book Title\",\n    \"author\": \"Updated Author Name\",\n    \"isbn\": \"UpdatedISBN5678\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/books/id?id=1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"books",
+						"id"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "133b7410-c7a2-4452-b912-54ce5c5f014a",
+					"name": "Default",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Updated Book Title\",\n    \"author\": \"Updated Author Name\",\n    \"isbn\": \"UpdatedISBN5678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/api/v1/books/id"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"id\": 1,\n    \"title\": \"Updated Book Title\",\n    \"author\": \"Updated Author Name\",\n    \"isbn\": \"UpdatedISBN5678\"\n}"
+				}
+			]
+		},
+		{
+			"name": "update book with duplicate ISBN",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f2ecb2b9-ba53-49db-92ee-3ad00fe199dd",
+						"exec": [
+							"pm.test(\"Book ISBN must be unique\", function () {",
+							"    const responseBody = pm.response.json();",
+							"    if (responseBody.error) {",
+							"        pm.expect(responseBody.error).to.eql(\"Book title must be unique\");",
+							"    }",
+							"});",
+							"",
+							"",
+							"pm.test(\"Authorization is present\", function () {",
+							"",
+							"    pm.expect(pm.request.headers.has(\"Authorization\")).to.be.true;",
+							"",
+							"    pm.expect(pm.response.status).to.not.eql(401, \"Authorization failed: Unauthorized access\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "3a648b05-1ac3-42c9-94be-c7af80635e4e",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Updated Book Title 1\",\n    \"author\": \"Updated Author Name\",\n    \"isbn\": \"UpdatedISBN5678\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{url}}/api/v1/books/id"
+			},
+			"response": [
+				{
+					"id": "77537fd4-2203-438b-893b-b78f06e12bdb",
+					"name": "Default",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n\"title\": \"Updated Book Title 1\",\n\"author\": \"Updated Author Name\",\n\"isbn\": \"UpdatedISBN5678\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/api/v1/books/id"
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"error\": \"Book ISBN must be unique\"\n}"
+				}
+			]
+		},
+		{
+			"name": "update book with duplicate title",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0dbd1251-1803-4699-97e5-7b2b3cc6f249",
+						"exec": [
+							"pm.test(\"Error for duplicate title on update\", function () {",
+							"    const responseBody = pm.response.json();",
+							"    if (responseBody.error) {",
+							"        pm.expect(responseBody.error).to.eql(\"Book title must be unique\");",
+							"    }",
+							"});",
+							"",
+							"pm.test(\"Authorization is present\", function () {",
+							"",
+							"    pm.expect(pm.request.headers.has(\"Authorization\")).to.be.true;",
+							"",
+							"    pm.expect(pm.response.status).to.not.eql(401, \"Authorization failed: Unauthorized access\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "d7b3ddbf-387f-4fd5-9c6c-18c628381eae",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Updated Book Title 1\",\n    \"author\": \"Updated Author Name\",\n    \"isbn\": \"UpdatedISBN5678\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/books/id?id =1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"books",
+						"id"
+					],
+					"query": [
+						{
+							"key": "id ",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "dd8a1340-d28e-4cbf-98ae-0cf153d35d9e",
+					"name": "Default",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\n{\n\"title\": \"Updated Book Title 1\",\n\"author\": \"Updated Author Name\",\n\"isbn\": \"UpdatedISBN5678\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/api/v1/books/id"
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": "{\n    \"error\": \"Book title must be unique\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete book by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "324b2e97-daa4-4c63-aacc-073bc7fd4e5d",
+						"exec": [
+							"pm.test(\"Successfully deletes the book\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Authorization is present\", function () {",
+							"",
+							"    pm.expect(pm.request.headers.has(\"Authorization\")).to.be.true;",
+							"",
+							"    pm.expect(pm.response.status).to.not.eql(401, \"Authorization failed: Unauthorized access\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"id": "c3ce9ce5-71b4-4edb-a92b-f5523461dfdd",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/books/id?id=1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"books",
+						"id"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "91e73efa-dfaf-461c-bbb9-4ba96bbb75e5",
+					"name": "Default",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": "{{url}}/api/v1/books/id"
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						}
+					],
+					"cookie": [],
+					"responseTime": null,
+					"body": ""
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://2acfada4-7873-4419-904f-e9a6dee11eee.mock.pstmn.io"
+		}
+	]
+}
