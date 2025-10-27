@@ -1,5 +1,0 @@
-{
-    "title": "Updated Book Title 1",
-    "author": "Updated Author Name",
-    "isbn": "UpdatedISBN5678"
-}

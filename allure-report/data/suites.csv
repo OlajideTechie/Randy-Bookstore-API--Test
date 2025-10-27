@@ -1,8 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","3418","add a new book","Randy's Bookstore API","Fri May 30 15:51:30 WAT 2025","passed","Fri May 30 15:51:34 WAT 2025","","","",""
-"","371","update book by id","Randy's Bookstore API","Fri May 30 15:51:35 WAT 2025","passed","Fri May 30 15:51:35 WAT 2025","","","",""
-"","379","update book with duplicate ISBN","Randy's Bookstore API","Fri May 30 15:51:35 WAT 2025","passed","Fri May 30 15:51:35 WAT 2025","","","",""
-"","418","add a new book with a duplicate title","Randy's Bookstore API","Fri May 30 15:51:34 WAT 2025","passed","Fri May 30 15:51:34 WAT 2025","","","",""
-"","335","update book with duplicate title","Randy's Bookstore API","Fri May 30 15:51:35 WAT 2025","passed","Fri May 30 15:51:36 WAT 2025","","","",""
-"","391","Delete book by id","Randy's Bookstore API","Fri May 30 15:51:36 WAT 2025","passed","Fri May 30 15:51:36 WAT 2025","","","",""
-"","376","retrieve all books","Randy's Bookstore API","Fri May 30 15:51:34 WAT 2025","passed","Fri May 30 15:51:35 WAT 2025","","","",""

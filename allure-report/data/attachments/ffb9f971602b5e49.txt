@@ -1,3 +1,0 @@
-{
-    "error": "Book title must be unique"
-}

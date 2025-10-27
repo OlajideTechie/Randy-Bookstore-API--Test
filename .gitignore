@@ -1,6 +1,6 @@
 # Allure test results and reports (generated folders)
-allure-results/*
-allure-report/*
+allure-results/
+allure-report/
 
 # Mac system files
 .DS_Store
